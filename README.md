@@ -1,46 +1,104 @@
-# Left4Dead2-Autobhop/求生之路2自动连跳外置插件
-This cheat makes you autobhop when you hold down the spacebar in Left 4 Dead 2.  
-此程序可以帮助你在求生之路2中实现自动连跳
-## Disclaimer
-You should not use this program on the VAC server, there is a chance that this program will be banned by VAC!  
-您不应该在VAC服务器上使用该程序，此程序会有概率遭到VAC封禁！
-## Content
-Thank the [https://github.com/KnifeLemon/Left4Dead2-Autobhop-CSharp](https://github.com/mads256h/l4d2-autobhop) project and adapt it to the latest game version.  
-在此感谢[https://github.com/KnifeLemon/Left4Dead2-Autobhop-CSharp](https://github.com/mads256h/l4d2-autobhop)项目,并适配最新的游戏版本.  
- ```
-Original process starts
-├─Generate a random copy
-├─Start the copy process
-└─Exit
+<div align="center">
 
-Copy process starts
-├─Delete the original .exe
-├─Wait for the game window to appear
-├─Get game memory data
-├─Hide the console
-└─Enter a continuous jump loop
-├─Detect the space bar
-├─Read the player status
-├─Send a key message
-└─Window survival detection
- ```
-## Running
-After compiling with 64x Release, double-click to run it.  
-使用64x Release编译后直接双击即可运行。  
- ```
- player base = 0x726BD8
- mFlags offset = 0xF0 
- ```
-Currently available player base offsets are:  
-目前可用的 player base偏移为:  
- ```
-0x726BD8, 0x73A574, 0x7C4424, 0x7C4450, 0x7C4644  
- ```
-## Building 
- Open this project in Visual Studio 2022. Select the configuration and platform and hit build.  
- 在Visual Studio 2022中打开此项目。选择配置和平台并点击构建。  
-## Warn
- If you want to play on a VAC server, please use the Random_name version. (What if it works?)  
- 如果想要在VAC服务器上游玩，请使用Random_name版本。（不确定是否工作？）  
- 
- Updated on March 28, 2025,Enjoy！
+# Left4Dead2-Autobhop
+
+Lightweight external **Auto Bunny Hop** utility for **Left 4 Dead 2**.
+
+Automatically performs bunny hopping while the **Space** key is held, providing smooth, consistent movement with minimal system resource usage.
+
+![Platform](https://img.shields.io/badge/Platform-Windows-blue)
+![Language](https://img.shields.io/badge/Language-C%2B%2B-00599C)
+![IDE](https://img.shields.io/badge/Visual%20Studio-2022%2B-purple)
+![License](https://img.shields.io/github/license/Efah-Dev/Left4Dead2-Autobhop)
+
+</div>
+
+---
+
+## ✨ Features
+
+* Lightweight external application
+* Modern C++ implementation
+* No DLL injection
+* Reads game memory using `ReadProcessMemory`
+* Automatically detects `client.dll`
+* Automatically waits for the game to launch
+* Automatically jumps only while the player is on the ground
+* Minimal CPU and memory usage
+* Easy to build and use
+
+---
+
+## ⚙️ How It Works
+
+The application performs the following steps:
+
+1. Waits for the **Left 4 Dead 2** process to start.
+2. Opens the game process with the required permissions.
+3. Locates the base address of `client.dll`.
+4. Reads the local player's `m_fFlags`.
+5. Monitors the **Space** key.
+6. Simulates jump input whenever the player is on the ground.
+
+Since the tool is completely external, no code is injected into the game process.
+
+---
+
+## 🚀 Build
+
+Requirements:
+
+* **Visual Studio 2022 or later**
+* **Windows x64**
+
+Open the solution:
+
+```text
+l4d2-autobhop.sln
+```
+
+Select the **Release x64** configuration and build the project.
+
+---
+
+## ▶️ Usage
+
+1. Launch **Left 4 Dead 2**.
+2. Start **Left4Dead2-Autobhop**.
+3. Wait until the game has fully loaded.
+4. Hold the **Space** key.
+5. Bunny hopping will be performed automatically.
+
+> The console window hides itself automatically after initialization.
+
+---
+
+## 🔧 Technical Details
+
+This project utilizes:
+
+* Win32 API
+* ToolHelp32 Snapshots
+* `ReadProcessMemory`
+* Window Messaging (`SendMessage`)
+* Modern C++ RAII wrappers for Windows handles
+
+The application operates entirely from outside the game process without DLL injection or memory patching.
+
+---
+
+## ⚠️ Disclaimer
+
+This project is provided for educational and research purposes only.
+
+Using third-party software in online games may violate the game's Terms of Service and could result in warnings, restrictions, or permanent account penalties.
+
+The author assumes no responsibility for any misuse of this software.
+
+---
+
+## 📄 License
+
+Licensed under the **MIT License**.
+
+See the **LICENSE** file for more information.
